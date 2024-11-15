@@ -57,4 +57,3 @@ export interface Coordinates {
       sunrise: number;
       sunset: number;
     };
-  }
