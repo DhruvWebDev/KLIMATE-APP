@@ -33,7 +33,6 @@ export interface Coordinates {
     wind: {
       speed: number;
       deg: number;
-      gust:number;
     };
     sys: {
       sunrise: number;
@@ -58,4 +57,3 @@ export interface Coordinates {
       sunrise: number;
       sunset: number;
     };
-  }
