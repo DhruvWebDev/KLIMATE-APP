@@ -1,7 +1,7 @@
 import { URLSearchParams } from "url"
 import { API_CONFIG } from "./config"
 import axios from "axios"
-import { Coordinates, WeatherData } from "./type";
+import { Coordintes, WeatherData } from "./type";
 class Weather  {
     private createUrl(endpoint: string, params: Record<string, string | number>) {
         const searchParams = new URLSearchParams({
@@ -11,7 +11,7 @@ class Weather  {
         return `${endpoint}?${searchParams.toString()}`;
       }
 
-    private async fetchData<T>(url: string) : Promise<T> {
+    private async fetchUrl<T>(url: string) : Promise<T> {
         try {
           const response = await axios.get<T>(url); // <T> ensures response data is typed
           return response.data; // Axios stores the actual data in `response.data`
@@ -30,28 +30,19 @@ class Weather  {
        
 
     private getForecast({lat, lon}:Coordintes): Promise<WeatherData>{
-        const url = this.createUrl(`${API_CONFIG.API_KEY}/reverse`, {
-            lat: lat.toString(),
-            lon: lon.toString(),
-            units: "metric",
+        const url = this.createUrl(`${API_CONFIG.API_KEY}/forecast`, {
+            lat: ,
+            lon: ,
+            units:
         })
-        return this.fetchData<WeatherData>(url);
+
     }
 
-    async reverseGeocode({
-        lat,
-        lon,
-      }: Coordinates): Promise<GeocodingResponse[]> {
-        const url = this.createUrl(`${API_CONFIG.GEO}/reverse`, {
-          lat: lat.toString(),
-          lon: lon.toString(),
-          limit: "1",
-        });
-        return this.fetchData<GeocodingResponse[]>(url);
-      }
-    
+    private reverseGeocode(){
+
+    }
+
     private searchLocations(){
 
     }
 }
-export const weather = new Weather();
